@@ -1,0 +1,670 @@
+blueprint:
+  source_url: https://github.com/BlackCube4/HA-IKEA-5-button-remote
+  name: ZHA - IKEA five button remote (double and triple clicks)
+  description: "Control lights with an IKEA five button remote (the round ones).
+    Every button is fully customizable and can be double and triple clicked.
+    In order to do so I added a delay to check if the button is pressed again or not.
+    However, there is the option to trigger an action as soon as the buttons are pressed.
+    This can be useful for degugging purposes (checking if and when the first and
+    second click are effectively heard)"
+  domain: automation
+  input:
+    remote:
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
+      selector:
+        device:
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI remote control
+    interval:
+      name: Max Interval between Clicks
+      description:
+        Maximum time interval between two clicks. Corresponds to the delay
+        from the last click to the triggering of the action.
+      default: 0.25
+      selector:
+        number:
+          min: 0.05
+          max: 2.0
+          unit_of_measurement: seconds
+          step: 0.01
+          mode: box
+    repeat_interval:
+      name: Interval between repeats
+      description: Time interval between repeats when holding up/down/left/right.
+      default: 0.3
+      selector:
+        number:
+          min: 0.05
+          max: 10.0
+          unit_of_measurement: seconds
+          step: 0.01
+          mode: box
+    repeat_count:
+      name: Max number of repeats
+      description: Max number of repeats.
+      default: 100
+      selector:
+        number:
+          min: 0
+          max: 2000
+          step: 1
+          mode: box
+    button_center_x1:
+      name: Center button - single click
+      description: Action to run on single center button click.
+      default: []
+      selector:
+        action: {}
+    button_center_x1_immediate:
+      name: Center button - single click (immediate response)
+      description:
+        Action to run as soon as the center button is clicked, without
+        waiting if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_center_x2:
+      name: Center button - double click
+      description: Action to run on double center button click.
+      default: []
+      selector:
+        action: {}
+    button_center_x2_immediate:
+      name: Center button - double click (immediate response)
+      description:
+        Action to run as soon as the center button is clicked the second
+        time, without waiting if there's a third click or not.
+      default: []
+      selector:
+        action: {}
+    button_center_x3:
+      name: Center button - triple click
+      description: Action to run on triple center button click.
+      default: []
+      selector:
+        action: {}
+    button_left_x1:
+      name: Left button - single click
+      description: Action to run on single left button click.
+      default: []
+      selector:
+        action: {}
+    button_left_x1_immediate:
+      name: Left button - single click (immediate response)
+      description:
+        Action to run as soon as the left button is clicked, without waiting
+        if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_left_x2:
+      name: Left button - double click
+      description: Action to run on double left button click.
+      default: []
+      selector:
+        action: {}
+    button_left_x2_immediate:
+      name: Left button - double click (immediate response)
+      description:
+        Action to run as soon as the left button is clicked the second
+        time, without waiting if there's a third click or not.
+      default: []
+      selector:
+        action: {}
+    button_left_x3:
+      name: Left button - triple click
+      description: Action to run on triple left button click.
+      default: []
+      selector:
+        action: {}
+    button_left_hold:
+      name: Left button - hold
+      description: Action to run on left button hold.
+      default: []
+      selector:
+        action: {}
+    button_left_hold_repeated:
+      name: Left button - hold - repeated
+      description: Action to run repeated on left button hold.
+      default: []
+      selector:
+        action: {}
+    button_left_release:
+      name: Left button - release
+      description: Action to run on left button release.
+      default: []
+      selector:
+        action: {}
+    button_right_x1:
+      name: Right button - single click
+      description: Action to run on single right button click.
+      default: []
+      selector:
+        action: {}
+    button_right_x1_immediate:
+      name: Right button - single click (immediate response)
+      description:
+        Action to run as soon as the right button is clicked, without waiting
+        if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_right_x2:
+      name: Right button - double click
+      description: Action to run on double right button click.
+      default: []
+      selector:
+        action: {}
+    button_right_x2_immediate:
+      name: Right button - double click (immediate response)
+      description:
+        Action to run as soon as the right button is clicked the second
+        time, without waiting if there's a third click or not.
+      default: []
+      selector:
+        action: {}
+    button_right_x3:
+      name: Right button - triple click
+      description: Action to run on triple right button click.
+      default: []
+      selector:
+        action: {}
+    button_right_hold:
+      name: Right button - hold
+      description: Action to run on right button hold.
+      default: []
+      selector:
+        action: {}
+    button_right_hold_repeated:
+      name: Right button - hold - repeated
+      description: Action to run repeated on right button hold.
+      default: []
+      selector:
+        action: {}
+    button_right_release:
+      name: Right button - release
+      description: Action to run on right button release.
+      default: []
+      selector:
+        action: {}
+    button_up_x1:
+      name: Up button - single click
+      description: Action to run on single up button click.
+      default: []
+      selector:
+        action: {}
+    button_up_x1_immediate:
+      name: Up button - single click (immediate response)
+      description:
+        Action to run as soon as the up button is clicked, without waiting
+        if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_up_x2:
+      name: Up button - double click
+      description: Action to run on double up button click.
+      default: []
+      selector:
+        action: {}
+    button_up_x2_immediate:
+      name: Up button - double click (immediate response)
+      description:
+        Action to run as soon as the up button is clicked the second time,
+        without waiting if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_up_x3:
+      name: Up button - triple click
+      description: Action to run on triple up button click.
+      default: []
+      selector:
+        action: {}
+    button_up_hold:
+      name: Up button - hold
+      description: Action to run on up button hold.
+      default: []
+      selector:
+        action: {}
+    button_up_hold_repeated:
+      name: Up button - hold - repeated
+      description: Action to run repeated on up button hold.
+      default: []
+      selector:
+        action: {}
+    button_up_release:
+      name: Up button - release
+      description: Action to run on up button release.
+      default: []
+      selector:
+        action: {}
+    button_down_x1:
+      name: Down button - single click
+      description: Action to run on single down button click.
+      default: []
+      selector:
+        action: {}
+    button_down_x1_immediate:
+      name: Down button - single click (immediate response)
+      description:
+        Action to run as soon as the down button is clicked, without waiting
+        if there's a second click or not.
+      default: []
+      selector:
+        action: {}
+    button_down_x2:
+      name: Down button - double click
+      description: Action to run on double down button click.
+      default: []
+      selector:
+        action: {}
+    button_down_x2_immediate:
+      name: Down button - double click (immediate response)
+      description:
+        Action to run as soon as the down button is clicked the second
+        time, without waiting if there's a third click or not.
+      default: []
+      selector:
+        action: {}
+    button_down_x3:
+      name: Down button - triple click
+      description: Action to run on triple down button click.
+      default: []
+      selector:
+        action: {}
+    button_down_hold:
+      name: Down button - hold
+      description: Action to run on down button hold.
+      default: []
+      selector:
+        action: {}
+    button_down_hold_repeated:
+      name: Down button - hold - repeated
+      description: Action to run repeated on down button hold.
+      default: []
+      selector:
+        action: {}
+    button_down_release:
+      name: Down button - release
+      description: Action to run on down button release.
+      default: []
+      selector:
+        action: {}
+
+###########################################
+#                                         #
+#                 Start                   #
+#                                         #
+###########################################
+
+mode: single
+max_exceeded: silent
+
+variables:
+  time: " {{ as_timestamp(now()) }} "
+  interval: !input interval
+  repeat_interval: !input repeat_interval
+  repeat_count: !input repeat_count
+  remote: !input remote
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+
+action:
+  - choose:
+      ####################################
+      # Middle button.
+      ####################################
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "toggle" }}'
+        sequence:
+          # Immediate 1x-Press middle button.
+          - choose: []
+            default: !input button_center_x1_immediate
+          - wait_for_trigger:
+              - device_id: !input remote
+                domain: zha
+                platform: device
+                type: remote_button_short_press
+                subtype: turn_on
+            timeout: "{{interval}}"
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+            # 1x-Press middle button.
+            then: !input button_center_x1
+            else:
+              - variables:
+                  time: " {{ as_timestamp(now()) }} "
+              # Immediate 2x-Press middle button.
+              - choose: []
+                default: !input button_center_x2_immediate
+              - wait_for_trigger:
+                  - device_id: !input remote
+                    domain: zha
+                    platform: device
+                    type: remote_button_short_press
+                    subtype: turn_on
+                timeout: "{{interval}}"
+                continue_on_timeout: true
+              - if:
+                  - condition: template
+                    value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+                # 2x-Press middle button.
+                then: !input button_center_x2
+                # 3x-Press middle button.
+                else: !input button_center_x3
+
+
+
+      ####################################
+      #Up button
+      ####################################
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+        sequence:
+          # Immediate 1x-Press up button.
+          - choose: []
+            default: !input button_up_x1_immediate
+          - wait_for_trigger:
+              - device_id: !input remote
+                domain: zha
+                platform: device
+                type: remote_button_short_press
+                subtype: dim_up
+            timeout: "{{interval}}"
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+            # 1x-Press up button.
+            then: !input button_up_x1
+            else:
+              - variables:
+                  time: " {{ as_timestamp(now()) }} "
+              # Immediate 2x-Press up button.
+              - choose: []
+                default: !input button_up_x2_immediate
+              - wait_for_trigger:
+                  - device_id: !input remote
+                    domain: zha
+                    platform: device
+                    type: remote_button_short_press
+                    subtype: dim_up
+                timeout: "{{interval}}"
+                continue_on_timeout: true
+              - if:
+                  - condition: template
+                    value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+                # 2x-Press up button.
+                then: !input button_up_x2
+                # 3x-Press up button.
+                else: !input button_up_x3
+      # Hold up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          # Hold up button.
+          - choose: []
+            default: !input button_up_hold
+          - repeat:
+              until:
+                - condition: template
+                  value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
+              sequence:
+                # Hold up button repeated.
+                - choose: []
+                  default: !input button_up_hold_repeated
+                - wait_for_trigger:
+                    - platform: event
+                      event_type: zha_event
+                      event_data:
+                        device_id: !input remote
+                        command: stop_with_on_off
+                  timeout: "{{repeat_interval}}"
+          # Release up button.
+          - choose: []
+            default: !input button_up_release
+
+
+
+
+      ####################################
+      #Down button
+      ####################################
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "step" }}'
+        sequence:
+          # Immediate 1x-Press down button.
+          - choose: []
+            default: !input button_down_x1_immediate
+          - wait_for_trigger:
+              - device_id: !input remote
+                domain: zha
+                platform: device
+                type: remote_button_short_press
+                subtype: dim_down
+            timeout: "{{interval}}"
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+            # 1x-Press down button.
+            then: !input button_down_x1
+            else:
+              - variables:
+                  time: " {{ as_timestamp(now()) }} "
+              # Immediate 2x-Press down button.
+              - choose: []
+                default: !input button_down_x2_immediate
+              - wait_for_trigger:
+                  - device_id: !input remote
+                    domain: zha
+                    platform: device
+                    type: remote_button_short_press
+                    subtype: dim_down
+                timeout: "{{interval}}"
+                continue_on_timeout: true
+              - if:
+                  - condition: template
+                    value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+                # 2x-Press down button.
+                then: !input button_down_x2
+                # 3x-Press down button.
+                else: !input button_down_x3
+      # Hold down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move" }}'
+        sequence:
+          # Hold down button.
+          - choose: []
+            default: !input button_down_hold
+          - repeat:
+              until:
+                - condition: template
+                  value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
+              sequence:
+                # Hold down button repeated.
+                - choose: []
+                  default: !input button_down_hold_repeated
+                - wait_for_trigger:
+                    - platform: event
+                      event_type: zha_event
+                      event_data:
+                        device_id: !input remote
+                        command: stop
+                  timeout: "{{repeat_interval}}"
+          # Release down button.
+          - choose: []
+            default: !input button_down_release
+
+
+
+
+
+      ####################################
+      #Left button
+      ####################################
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "press" }}'
+          - condition: template
+            value_template: "{{ trigger.event.data.args == [257,13,0] }}"
+        sequence:
+          # Immediate 1x-Press left button.
+          - choose: []
+            default: !input button_left_x1_immediate
+          - wait_for_trigger:
+              - device_id: !input remote
+                domain: zha
+                platform: device
+                type: remote_button_short_press
+                subtype: left
+            timeout: "{{interval}}"
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+            # 1x-Press left button.
+            then: !input button_left_x1
+            else:
+              - variables:
+                  time: " {{ as_timestamp(now()) }} "
+              # Immediate 2x-Press left button.
+              - choose: []
+                default: !input button_left_x2_immediate
+              - wait_for_trigger:
+                  - device_id: !input remote
+                    domain: zha
+                    platform: device
+                    type: remote_button_short_press
+                    subtype: left
+                timeout: "{{interval}}"
+                continue_on_timeout: true
+              - if:
+                  - condition: template
+                    value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+                # 2x-Press left button.
+                then: !input button_left_x2
+                # 3x-Press left button.
+                else: !input button_left_x3
+      # Hold left button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "hold" }}'
+          - condition: template
+            value_template: "{{ trigger.event.data.args == [3329,0] }}"
+        sequence:
+          # Hold left button.
+          - choose: []
+            default: !input button_left_hold
+          - repeat:
+              until:
+                - condition: template
+                  value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
+              sequence:
+                # Hold left button repeated.
+                - choose: []
+                  default: !input button_left_hold_repeated
+                - wait_for_trigger:
+                    - platform: event
+                      event_type: zha_event
+                      event_data:
+                        device_id: !input remote
+                        command: "release"
+                  timeout: "{{repeat_interval}}"
+          # Release left button.
+          - choose: []
+            default: !input button_left_release
+        
+
+
+
+
+      ####################################
+      #Right button
+      ####################################
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "press" }}'
+          - condition: template
+            value_template: "{{ trigger.event.data.args == [256,13,0] }}"
+        sequence:
+          # Immediate 1x-Press right button.
+          - choose: []
+            default: !input button_right_x1_immediate
+          - wait_for_trigger:
+              - device_id: !input remote
+                domain: zha
+                platform: device
+                type: remote_button_short_press
+                subtype: right
+            timeout: "{{interval}}"
+            continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+            # 1x-Press right button.
+            then: !input button_right_x1
+            else:
+              - variables:
+                  time: " {{ as_timestamp(now()) }} "
+              # Immediate 2x-Press right button.
+              - choose: []
+                default: !input button_right_x2_immediate
+              - wait_for_trigger:
+                  - device_id: !input remote
+                    domain: zha
+                    platform: device
+                    type: remote_button_short_press
+                    subtype: right
+                timeout: "{{interval}}"
+                continue_on_timeout: true
+              - if:
+                  - condition: template
+                    value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
+                # 2x-Press right button.
+                then: !input button_right_x2
+                # 3x-Press right button.
+                else: !input button_right_x3
+      # Hold right button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "hold" }}'
+          - condition: template
+            value_template: "{{ trigger.event.data.args == [3328,0] }}"
+        sequence:
+          # Hold right button.
+          - choose: []
+            default: !input button_right_hold
+          - repeat:
+              until:
+                - condition: template
+                  value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
+              sequence:
+                # Hold right button repeated.
+                - choose: []
+                  default: !input button_right_hold_repeated
+                - wait_for_trigger:
+                    - platform: event
+                      event_type: zha_event
+                      event_data:
+                        device_id: !input remote
+                        command: "release"
+                  timeout: "{{repeat_interval}}"
+          # Release right button.
+          - choose: []
+            default: !input button_right_release
