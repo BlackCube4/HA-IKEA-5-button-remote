@@ -1,9 +1,10 @@
 blueprint:
   source_url: https://github.com/BlackCube4/HA-IKEA-5-button-remote
   name: ZHA - IKEA five button remote (double and triple clicks)
-  description: "Control everything with an IKEA five button remote (the round ones). 
-                Every button is fully customizable and can be double and triple clicked. 
-                When holding the up/down/left/right button you can also choose an action to trigger repeatedly."
+  description:
+    "Control everything with an IKEA five button remote (the round ones).
+    Every button is fully customizable and can be double and triple clicked.
+    When holding the up/down/left/right button you can also choose an action to trigger repeatedly."
   domain: automation
   input:
     remote:
@@ -293,9 +294,7 @@ blueprint:
         action: {}
 
 ###########################################
-#                                         #
 #                 Start                   #
-#                                         #
 ###########################################
 
 mode: single
@@ -317,7 +316,7 @@ trigger:
 action:
   - choose:
       ####################################
-      # Middle button.
+      #          Middle button           #
       ####################################
       - conditions:
           - condition: template
@@ -361,10 +360,8 @@ action:
                 # 3x-Press middle button.
                 else: !input button_center_x3
 
-
-
       ####################################
-      #Up button
+      #            Up button             #
       ####################################
       - conditions:
           - condition: template
@@ -434,11 +431,8 @@ action:
           - choose: []
             default: !input button_up_release
 
-
-
-
       ####################################
-      #Down button
+      #           Down button            #
       ####################################
       - conditions:
           - condition: template
@@ -508,12 +502,8 @@ action:
           - choose: []
             default: !input button_down_release
 
-
-
-
-
       ####################################
-      #Left button
+      #           Left button            #
       ####################################
       - conditions:
           - condition: template
@@ -586,13 +576,9 @@ action:
           # Release left button.
           - choose: []
             default: !input button_left_release
-        
-
-
-
 
       ####################################
-      #Right button
+      #           Right button           #
       ####################################
       - conditions:
           - condition: template
