@@ -1,12 +1,9 @@
 blueprint:
   source_url: https://github.com/BlackCube4/HA-IKEA-5-button-remote
   name: ZHA - IKEA five button remote (double and triple clicks)
-  description: "Control lights with an IKEA five button remote (the round ones).
-    Every button is fully customizable and can be double and triple clicked.
-    In order to do so I added a delay to check if the button is pressed again or not.
-    However, there is the option to trigger an action as soon as the buttons are pressed.
-    This can be useful for degugging purposes (checking if and when the first and
-    second click are effectively heard)"
+  description: "Control everything with an IKEA five button remote (the round ones). 
+                Every button is fully customizable and can be double and triple clicked. 
+                When holding the up/down/left/right button you can also choose an action to trigger repeatedly."
   domain: automation
   input:
     remote:
