@@ -8,3 +8,5 @@ credit to malorezzanzo64 for the following blueprint which was my starting point
 
 https://community.home-assistant.io/t/z2m-ikea-tradfri-5-button-remote-double-and-triple-clicks/441850
 
+![Gui](https://i.ibb.co/rQ6J5S0/Ikea-Remote.jpg)
+
