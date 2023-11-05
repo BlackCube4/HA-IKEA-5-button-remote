@@ -322,7 +322,7 @@ action:
           - condition: template
             value_template: '{{ trigger.event.data.command == "toggle" }}'
         sequence:
-          # Immediate 1x-Press middle button.
+          # Immediate 1x-Press middle button
           - choose: []
             default: !input button_center_x1_immediate
           - wait_for_trigger:
@@ -336,12 +336,12 @@ action:
           - if:
               - condition: template
                 value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-            # 1x-Press middle button.
+            # 1x-Press middle button
             then: !input button_center_x1
             else:
               - variables:
                   time: " {{ as_timestamp(now()) }} "
-              # Immediate 2x-Press middle button.
+              # Immediate 2x-Press middle button
               - choose: []
                 default: !input button_center_x2_immediate
               - wait_for_trigger:
@@ -355,9 +355,9 @@ action:
               - if:
                   - condition: template
                     value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-                # 2x-Press middle button.
+                # 2x-Press middle button
                 then: !input button_center_x2
-                # 3x-Press middle button.
+                # 3x-Press middle button
                 else: !input button_center_x3
 
       ####################################
@@ -367,7 +367,7 @@ action:
           - condition: template
             value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
         sequence:
-          # Immediate 1x-Press up button.
+          # Immediate 1x-Press up button
           - choose: []
             default: !input button_up_x1_immediate
           - wait_for_trigger:
@@ -381,12 +381,12 @@ action:
           - if:
               - condition: template
                 value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-            # 1x-Press up button.
+            # 1x-Press up button
             then: !input button_up_x1
             else:
               - variables:
                   time: " {{ as_timestamp(now()) }} "
-              # Immediate 2x-Press up button.
+              # Immediate 2x-Press up button
               - choose: []
                 default: !input button_up_x2_immediate
               - wait_for_trigger:
@@ -400,16 +400,16 @@ action:
               - if:
                   - condition: template
                     value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-                # 2x-Press up button.
+                # 2x-Press up button
                 then: !input button_up_x2
-                # 3x-Press up button.
+                # 3x-Press up button
                 else: !input button_up_x3
-      # Hold up button.
+      # Hold up button
       - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
         sequence:
-          # Hold up button.
+          # Hold up button
           - choose: []
             default: !input button_up_hold
           - repeat:
@@ -417,7 +417,7 @@ action:
                 - condition: template
                   value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
               sequence:
-                # Hold up button repeated.
+                # Hold up button repeated
                 - choose: []
                   default: !input button_up_hold_repeated
                 - wait_for_trigger:
@@ -427,7 +427,7 @@ action:
                         device_id: !input remote
                         command: stop_with_on_off
                   timeout: "{{repeat_interval}}"
-          # Release up button.
+          # Release up button
           - choose: []
             default: !input button_up_release
 
@@ -438,7 +438,7 @@ action:
           - condition: template
             value_template: '{{ trigger.event.data.command == "step" }}'
         sequence:
-          # Immediate 1x-Press down button.
+          # Immediate 1x-Press down button
           - choose: []
             default: !input button_down_x1_immediate
           - wait_for_trigger:
@@ -452,12 +452,12 @@ action:
           - if:
               - condition: template
                 value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-            # 1x-Press down button.
+            # 1x-Press down button
             then: !input button_down_x1
             else:
               - variables:
                   time: " {{ as_timestamp(now()) }} "
-              # Immediate 2x-Press down button.
+              # Immediate 2x-Press down button
               - choose: []
                 default: !input button_down_x2_immediate
               - wait_for_trigger:
@@ -471,16 +471,16 @@ action:
               - if:
                   - condition: template
                     value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-                # 2x-Press down button.
+                # 2x-Press down button
                 then: !input button_down_x2
-                # 3x-Press down button.
+                # 3x-Press down button
                 else: !input button_down_x3
-      # Hold down button.
+      # Hold down button
       - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.command == "move" }}'
         sequence:
-          # Hold down button.
+          # Hold down button
           - choose: []
             default: !input button_down_hold
           - repeat:
@@ -488,7 +488,7 @@ action:
                 - condition: template
                   value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
               sequence:
-                # Hold down button repeated.
+                # Hold down button repeated
                 - choose: []
                   default: !input button_down_hold_repeated
                 - wait_for_trigger:
@@ -498,7 +498,7 @@ action:
                         device_id: !input remote
                         command: stop
                   timeout: "{{repeat_interval}}"
-          # Release down button.
+          # Release down button
           - choose: []
             default: !input button_down_release
 
@@ -511,7 +511,7 @@ action:
           - condition: template
             value_template: "{{ trigger.event.data.args == [257,13,0] }}"
         sequence:
-          # Immediate 1x-Press left button.
+          # Immediate 1x-Press left button
           - choose: []
             default: !input button_left_x1_immediate
           - wait_for_trigger:
@@ -525,12 +525,12 @@ action:
           - if:
               - condition: template
                 value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-            # 1x-Press left button.
+            # 1x-Press left button
             then: !input button_left_x1
             else:
               - variables:
                   time: " {{ as_timestamp(now()) }} "
-              # Immediate 2x-Press left button.
+              # Immediate 2x-Press left button
               - choose: []
                 default: !input button_left_x2_immediate
               - wait_for_trigger:
@@ -544,18 +544,18 @@ action:
               - if:
                   - condition: template
                     value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-                # 2x-Press left button.
+                # 2x-Press left button
                 then: !input button_left_x2
-                # 3x-Press left button.
+                # 3x-Press left button
                 else: !input button_left_x3
-      # Hold left button.
+      # Hold left button
       - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.command == "hold" }}'
           - condition: template
             value_template: "{{ trigger.event.data.args == [3329,0] }}"
         sequence:
-          # Hold left button.
+          # Hold left button
           - choose: []
             default: !input button_left_hold
           - repeat:
@@ -563,7 +563,7 @@ action:
                 - condition: template
                   value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
               sequence:
-                # Hold left button repeated.
+                # Hold left button repeated
                 - choose: []
                   default: !input button_left_hold_repeated
                 - wait_for_trigger:
@@ -573,7 +573,7 @@ action:
                         device_id: !input remote
                         command: "release"
                   timeout: "{{repeat_interval}}"
-          # Release left button.
+          # Release left button
           - choose: []
             default: !input button_left_release
 
@@ -586,7 +586,7 @@ action:
           - condition: template
             value_template: "{{ trigger.event.data.args == [256,13,0] }}"
         sequence:
-          # Immediate 1x-Press right button.
+          # Immediate 1x-Press right button
           - choose: []
             default: !input button_right_x1_immediate
           - wait_for_trigger:
@@ -600,12 +600,12 @@ action:
           - if:
               - condition: template
                 value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-            # 1x-Press right button.
+            # 1x-Press right button
             then: !input button_right_x1
             else:
               - variables:
                   time: " {{ as_timestamp(now()) }} "
-              # Immediate 2x-Press right button.
+              # Immediate 2x-Press right button
               - choose: []
                 default: !input button_right_x2_immediate
               - wait_for_trigger:
@@ -619,18 +619,18 @@ action:
               - if:
                   - condition: template
                     value_template: "{{(as_timestamp(now()) - time ) >= interval }}"
-                # 2x-Press right button.
+                # 2x-Press right button
                 then: !input button_right_x2
-                # 3x-Press right button.
+                # 3x-Press right button
                 else: !input button_right_x3
-      # Hold right button.
+      # Hold right button
       - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.command == "hold" }}'
           - condition: template
             value_template: "{{ trigger.event.data.args == [3328,0] }}"
         sequence:
-          # Hold right button.
+          # Hold right button
           - choose: []
             default: !input button_right_hold
           - repeat:
@@ -638,7 +638,7 @@ action:
                 - condition: template
                   value_template: "{{ wait.trigger is not none or repeat.index >= repeat_count }}"
               sequence:
-                # Hold right button repeated.
+                # Hold right button repeated
                 - choose: []
                   default: !input button_right_hold_repeated
                 - wait_for_trigger:
@@ -648,6 +648,6 @@ action:
                         device_id: !input remote
                         command: "release"
                   timeout: "{{repeat_interval}}"
-          # Release right button.
+          # Release right button
           - choose: []
             default: !input button_right_release
